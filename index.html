@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Khulna University Physics Discipline Alumni Network</title>
+  <meta name="description"
+    content="Official Alumni Network for Khulna University Physics Discipline featuring alumni profiles across Study Abroad and Tech, Data & AI domains.">
+
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <!-- Interactive Planetary Orbit Background Canvas -->
+  <canvas id="physics-canvas"></canvas>
+
+  <!-- Navigation Header -->
+  <header class="header glass-nav">
+    <div class="container header-nav">
+      <a href="#" class="brand-title">
+        Khulna University Physics Discipline
+        <div class="brand-subtitle">Alumni Network & Career Portal</div>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="#directory">Directory</a></li>
+          <li><a href="#freshers-roadmap">Freshers Roadmap</a></li>
+          <li>
+            <button class="btn-black" id="btn-open-admin-access">
+              Join Network (Admin)
+            </button>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section with Canvas Background Behind -->
+    <section class="hero">
+      <div class="container">
+        <div class="glass-hero-wrapper">
+          <span class="hero-tag">Physics Discipline • Khulna University</span>
+          <h1>Alumni Directory & Career Network</h1>
+          <p class="hero-subtext">
+            Connecting the bright minds of Khulna University’s Physics Discipline — undergraduates and fresh graduates —
+            with alumni who are advancing frontiers as dedicated <strong>Researchers</strong> who are working in diverse
+            fields,
+            and diverse professional pathways.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search & Directory Section -->
+    <section class="directory-section" id="directory">
+      <div class="container">
+        <div class="filter-bar glass-panel">
+          <!-- Text Search Field -->
+          <input type="text" id="search-input" class="search-field"
+            placeholder="Search alumni by name, university (e.g. Cambridge, UT Austin), company, batch, or thesis topic..." />
+
+          <!-- Category Segment Pills (Study Abroad and Tech, Data & AI ONLY) -->
+          <div class="category-pills-group">
+            <button class="pill-btn active" data-category="all">All Alumni</button>
+            <button class="pill-btn" data-category="study-abroad">Researcher</button>
+            <button class="pill-btn" data-category="tech">Tech, Data & AI</button>
+          </div>
+
+          <!-- Secondary Filters Bar -->
+          <div class="filter-meta-bar">
+            <div>
+              <label for="batch-select" style="margin-right: 0.5rem; font-weight: 500;">Filter by Batch:</label>
+              <select id="batch-select" class="select-batch">
+                <option value="all">All Batches</option>
+                <option value="09th">09th Batch</option>
+                <option value="10th">10th Batch</option>
+                <option value="14th">14th Batch</option>
+                <option value="15th">15th Batch</option>
+                <option value="16th">16th Batch</option>
+                <option value="17th">17th Batch</option>
+                <option value="18th">18th Batch</option>
+              </select>
+            </div>
+
+            <span id="result-count">Showing 7 alumni profiles</span>
+          </div>
+        </div>
+
+        <!-- Alumni Cards Container -->
+        <div class="cards-grid" id="alumni-grid">
+          <!-- Alumni cards injected by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Freshers Guidance Roadmap Section -->
+    <section class="roadmap-section" id="freshers-roadmap">
+      <div class="container">
+        <div class="section-head">
+          <h2>Freshers Career Roadmap</h2>
+          <p>Structured career preparation steps for Khulna University Physics undergraduates.</p>
+        </div>
+
+        <div class="roadmap-grid" id="roadmap-grid-container">
+          <!-- Guidance tracks injected by app.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modals Overlay Backdrop -->
+  <!-- 1. Profile View Modal -->
+  <div class="modal-backdrop" id="modal-profile-backdrop">
+    <div class="modal-content-box glass-modal" id="modal-profile-box"></div>
+  </div>
+
+  <!-- 2. Mentorship Request Modal -->
+  <div class="modal-backdrop" id="modal-mentor-backdrop">
+    <div class="modal-content-box glass-modal" id="modal-mentor-box" style="max-width: 500px;"></div>
+  </div>
+
+  <!-- 3. Admin Authentication Modal -->
+  <div class="modal-backdrop" id="modal-admin-auth-backdrop">
+    <div class="modal-content-box glass-modal" id="modal-admin-auth-box" style="max-width: 440px;"></div>
+  </div>
+
+  <!-- 4. Admin Add Alumni Modal -->
+  <div class="modal-backdrop" id="modal-add-backdrop">
+    <div class="modal-content-box glass-modal" id="modal-add-box" style="max-width: 600px;"></div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.3rem;">
+        Khulna University • Discipline of Physics
+      </p>
+      <p>© 2026 All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="alumni-data.js"></script>
+  <script src="app.js"></script>
+</body>
+
+</html>

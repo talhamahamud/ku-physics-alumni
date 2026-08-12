@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Off-white background circle with subtle dark border for browser tab visibility -->
+  <circle cx="32" cy="32" r="30" fill="#fafafa" stroke="#09090b" stroke-width="2.5"/>
+  
+  <!-- Central Physics Nucleus -->
+  <circle cx="32" cy="32" r="4.5" fill="#09090b"/>
+  
+  <!-- Atomic Orbit Lines -->
+  <g stroke="#09090b" stroke-width="2" fill="none" opacity="0.9">
+    <ellipse cx="32" cy="32" rx="22" ry="8.5" transform="rotate(0 32 32)"/>
+    <ellipse cx="32" cy="32" rx="22" ry="8.5" transform="rotate(60 32 32)"/>
+    <ellipse cx="32" cy="32" rx="22" ry="8.5" transform="rotate(120 32 32)"/>
+  </g>
+</svg>

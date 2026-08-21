@@ -41,7 +41,7 @@ const ALUMNI_DATA = [
       "DAAD Doctoral Fellowship Awardee",
       "KU Gold Medalist 2011"
     ],
-    "image": "https://ibb.co.com/C3tbKdhD"
+    "image": "https://i.ibb.co.com/67ZH0hgL/cgpa.png"
   },
   {
     "id": "ku-phy-002",

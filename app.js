@@ -212,18 +212,27 @@ document.addEventListener('DOMContentLoaded', () => {
   function initSpaceNetCanvas() {
     if (!canvas || !ctx) return;
 
-    const G = 0.6;          // gravity constant
-    const DAMPING = 0.999;  // air resistance
-    const TRAIL_LEN = 100;  // trail length (frames)
+    const isMobile = () => window.innerWidth <= 768;
+
+    // Adaptive constants based on device
+    let G = 0.6;
+    let DAMPING = 0.999;
+    let TRAIL_LEN = isMobile() ? 25 : 100;
+    let MAX_PENDULUMS = isMobile() ? 3 : 6;
 
     let pivotY = 0;
     let pendulums = [];
+    let animFrameId = null;
+    let isVisible = true; // Page Visibility
+    let isInView = true;  // IntersectionObserver
 
     function buildPendulums(w, h) {
-      pivotY = h * 0.08; // pivot near top of hero
+      TRAIL_LEN = isMobile() ? 25 : 100;
+      MAX_PENDULUMS = isMobile() ? 3 : 6;
+
+      pivotY = h * 0.08;
       pendulums = [];
 
-      // Scale pendulum lengths dynamically for small viewports (mobile/tablet/PC)
       const scale = Math.max(0.45, Math.min(1, w / 800));
 
       const configs = [
@@ -233,7 +242,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { l1: 100 * scale, l2: 75 * scale,  a1: 1.4,  a2: -2.0, px: 0.56 },
         { l1: 115 * scale, l2: 65 * scale,  a1: -1.9, a2: 1.1,  px: 0.70 },
         { l1: 85 * scale,  l2: 90 * scale,  a1: 2.3,  a2: -0.8, px: 0.84 },
-      ];
+      ].slice(0, MAX_PENDULUMS);
 
       configs.forEach((c, i) => {
         pendulums.push({
@@ -247,6 +256,8 @@ document.addEventListener('DOMContentLoaded', () => {
       });
     }
 
+    // Debounced resize handler
+    let resizeTimer = null;
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       const heroEl = document.querySelector('.hero');
@@ -255,13 +266,27 @@ document.addEventListener('DOMContentLoaded', () => {
       buildPendulums(canvas.width, canvas.height);
     }
 
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(resizeCanvas, 150);
+    });
     resizeCanvas();
 
-    window.addEventListener('mousemove', (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+    // Pause when tab is hidden
+    document.addEventListener('visibilitychange', () => {
+      isVisible = !document.hidden;
+      if (isVisible && isInView) startLoop();
     });
+
+    // Pause when canvas scrolls out of view
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        isInView = entries[0].isIntersecting;
+        if (isInView && isVisible) startLoop();
+        else stopLoop();
+      }, { threshold: 0.01 });
+      observer.observe(canvas);
+    }
 
     function stepPendulum(p, w) {
       const pivX = p.px * w;
@@ -299,30 +324,35 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function animate() {
+      animFrameId = requestAnimationFrame(animate);
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       const w = canvas.width;
 
       pendulums.forEach((p) => {
         const { pivX, b1x, b1y, b2x, b2y } = stepPendulum(p, w);
 
-        // Draw fading trail of bob2
-        for (let i = 1; i < p.trail.length; i++) {
-          const t = i / p.trail.length;
-          ctx.beginPath();
-          ctx.moveTo(p.trail[i - 1].x, p.trail[i - 1].y);
-          ctx.lineTo(p.trail[i].x, p.trail[i].y);
-          ctx.strokeStyle = `rgba(9,9,11,${t * 0.16})`;
-          ctx.lineWidth = t * 1.1;
-          ctx.stroke();
+        // Batch all trail segments into a single Path2D (huge perf win on mobile)
+        if (p.trail.length > 1) {
+          const trail = p.trail;
+          const len = trail.length;
+          // Draw entire trail as one gradient path
+          ctx.save();
+          ctx.lineWidth = 1.2;
+          const path = new Path2D();
+          path.moveTo(trail[0].x, trail[0].y);
+          for (let i = 1; i < len; i++) path.lineTo(trail[i].x, trail[i].y);
+          ctx.strokeStyle = 'rgba(9,9,11,0.12)';
+          ctx.stroke(path);
+          ctx.restore();
         }
 
-        // Draw pivot point
+        // Pivot
         ctx.beginPath();
         ctx.arc(pivX, pivotY, 3, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(9,9,11,0.25)';
         ctx.fill();
 
-        // Draw arm 1
+        // Arm 1
         ctx.beginPath();
         ctx.moveTo(pivX, pivotY);
         ctx.lineTo(b1x, b1y);
@@ -330,13 +360,13 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // Draw bob 1
+        // Bob 1
         ctx.beginPath();
         ctx.arc(b1x, b1y, 4, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(9,9,11,0.18)';
         ctx.fill();
 
-        // Draw arm 2
+        // Arm 2
         ctx.beginPath();
         ctx.moveTo(b1x, b1y);
         ctx.lineTo(b2x, b2y);
@@ -344,14 +374,23 @@ document.addEventListener('DOMContentLoaded', () => {
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // Draw bob 2
+        // Bob 2
         ctx.beginPath();
         ctx.arc(b2x, b2y, 5, 0, Math.PI * 2);
         ctx.fillStyle = 'rgba(9,9,11,0.5)';
         ctx.fill();
       });
+    }
 
-      requestAnimationFrame(animate);
+    function startLoop() {
+      if (!animFrameId) animate();
+    }
+
+    function stopLoop() {
+      if (animFrameId) {
+        cancelAnimationFrame(animFrameId);
+        animFrameId = null;
+      }
     }
 
     animate();
@@ -402,7 +441,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <article class="alumni-card list-view-card" data-id="${alumni.id}">
           <div class="alumni-info-col">
             <div class="card-header-flex">
-              <img src="${imgSource}" alt="${alumni.name}" class="alumni-profile-img">
+              <img src="${imgSource}" alt="${alumni.name}" class="alumni-profile-img" loading="lazy" decoding="async">
               <div class="card-title-group">
                 <h3>${alumni.name}</h3>
                 <span class="batch-badge">${alumni.batch}</span>

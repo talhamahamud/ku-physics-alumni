@@ -1086,3 +1086,88 @@ textarea.form-input {
     gap: 0.8rem;
   }
 }
+
+/* ==========================================================================
+   Mobile Performance Optimizations
+   Remove expensive backdrop-filter blur on ≤768px (biggest GPU drain on phones)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Canvas: compositing layer hint */
+  #physics-canvas {
+    will-change: contents;
+  }
+
+  /* Strip blur from nav — use solid bg instead */
+  .glass-nav {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(250, 250, 250, 0.97);
+  }
+
+  .nav-drawer {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(250, 250, 250, 0.99);
+  }
+
+  /* Strip blur from filter bar */
+  .filter-bar.glass-panel {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.98);
+  }
+
+  /* Strip blur from alumni cards */
+  .alumni-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.97);
+  }
+
+  /* Strip blur from modals */
+  .modal-backdrop {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(9, 9, 11, 0.55);
+  }
+
+  .modal-content-box.glass-modal {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.98);
+  }
+
+  /* Strip blur from roadmap cards */
+  .roadmap-card {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.98);
+  }
+
+  /* Strip blur from empty box */
+  .empty-box {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.98);
+  }
+
+  /* Smooth touch scrolling */
+  .cards-grid,
+  .modal-content-box.glass-modal,
+  #admin-manage-list {
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+  }
+
+  /* Disable hover transforms on touch — prevents sticky hover states */
+  .alumni-card:hover,
+  .roadmap-card:hover {
+    transform: none;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.03);
+  }
+
+  /* Disable card transition on mobile for snappier feel */
+  .alumni-card {
+    transition: none;
+  }
+}

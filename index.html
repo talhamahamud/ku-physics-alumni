@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Khulna University Physics Discipline Alumni Network</title>
   <meta name="description"
-    content="Official Alumni Network for Khulna University Physics Discipline featuring alumni profiles across Study Abroad and Tech, Data & AI domains.">
+    content="Alumni Network for Khulna University Physics Discipline featuring alumni profiles across Researcher and other professional domains.">
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="favicon.svg">
@@ -28,10 +28,17 @@
         <div class="brand-subtitle">Alumni Network & Career Portal</div>
       </a>
 
-      <nav>
+      <!-- Hamburger toggle (mobile only) -->
+      <button class="nav-hamburger" id="nav-hamburger" aria-label="Toggle navigation" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <nav class="nav-drawer" id="nav-drawer">
         <ul class="nav-menu">
-          <li><a href="#directory">Directory</a></li>
-          <li><a href="#freshers-roadmap">Freshers Roadmap</a></li>
+          <li><a href="#directory" class="nav-link">Directory</a></li>
+          <li><a href="#freshers-roadmap" class="nav-link">Freshers Roadmap</a></li>
           <li>
             <button class="btn-black" id="btn-open-admin-access">
               Join Network (Admin)
@@ -67,11 +74,14 @@
           <input type="text" id="search-input" class="search-field"
             placeholder="Search alumni by name, university (e.g. Cambridge, UT Austin), company, batch, or thesis topic..." />
 
-          <!-- Category Segment Pills (Study Abroad and Tech, Data & AI ONLY) -->
+          <!-- Category Segment Pills -->
           <div class="category-pills-group">
             <button class="pill-btn active" data-category="all">All Alumni</button>
             <button class="pill-btn" data-category="study-abroad">Researcher</button>
             <button class="pill-btn" data-category="tech">Tech, Data & AI</button>
+            <button class="pill-btn" data-category="govt-job">GOVT. Job</button>
+            <button class="pill-btn" data-category="bank">Bank</button>
+            <button class="pill-btn" data-category="school">School</button>
           </div>
 
           <!-- Secondary Filters Bar -->

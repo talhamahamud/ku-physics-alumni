@@ -174,6 +174,37 @@ document.addEventListener('DOMContentLoaded', () => {
   renderAlumniCards(ALUMNI_DATA);
   renderRoadmap();
   setupEventListeners();
+  initHamburgerMenu();
+
+  /* ==========================================================================
+     Hamburger Menu Toggle (Mobile)
+     ========================================================================== */
+  function initHamburgerMenu() {
+    const hamburger = document.getElementById('nav-hamburger');
+    const drawer = document.getElementById('nav-drawer');
+    if (!hamburger || !drawer) return;
+
+    hamburger.addEventListener('click', () => {
+      const isOpen = drawer.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', String(isOpen));
+    });
+
+    // Close drawer when a nav link is clicked (smooth scroll)
+    drawer.querySelectorAll('a.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        drawer.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    // Close drawer when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!hamburger.contains(e.target) && !drawer.contains(e.target)) {
+        drawer.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', 'false');
+      }
+    });
+  }
 
   /* ==========================================================================
      6-Pendulum Physics Animation — Hero Background
@@ -353,7 +384,10 @@ document.addEventListener('DOMContentLoaded', () => {
     gridContainer.innerHTML = dataArray.map(alumni => {
       const categoryNames = {
         'study-abroad': 'Researcher',
-        'tech': 'Tech, Data & AI'
+        'tech': 'Tech, Data & AI',
+        'govt-job': 'GOVT. Job',
+        'bank': 'Bank',
+        'school': 'School'
       };
       const categoryLabel = categoryNames[alumni.categoryTag] || 'Alumni';
 
@@ -729,6 +763,9 @@ document.addEventListener('DOMContentLoaded', () => {
               <select class="form-input" id="add-category" required>
                 <option value="study-abroad">Researcher</option>
                 <option value="tech">Tech, Data & AI</option>
+                <option value="govt-job">GOVT. Job</option>
+                <option value="bank">Bank</option>
+                <option value="school">School</option>
               </select>
             </div>
             <div class="form-group">

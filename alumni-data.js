@@ -8,20 +8,17 @@ const ALUMNI_DATA = [
     "id": "ku-phy-002",
     "name": "Nusrat Jahan Tania",
     "batch": "14th Batch (2011-12)",
-    "session": "2011-2012",
+    "session": "2015-2016",
     "title": "Senior Lead Data Scientist & AI Architect",
     "organization": "Brain Station 23 / FinTech Global",
     "location": "Dhaka, Bangladesh",
     "categoryTag": "tech",
     "tags": [
-      "Tech, Data & AI",
-      "Data Science",
-      "Machine Learning",
-      "Python",
-      "AI"
+      "Alumni",
+      "tech"
     ],
     "gender": "female",
-    "kuThesisTopic": "Computational Modeling of Stellar Magnetic Fields using Python",
+    "kuThesisTopic": "Applied Physics Research",
     "email": "nusrat.tania.ds@gmail.com",
     "linkedin": "https://linkedin.com/in/example-nusrat-ds",
     "scholar": "https://scholar.google.com/citations?user=example-nusrat",
@@ -31,31 +28,20 @@ const ALUMNI_DATA = [
     "availableForMentorship": true,
     "careerPathway": [
       {
-        "year": "2015",
+        "year": "2018",
         "event": "B.Sc. in Physics, Khulna University"
       },
       {
-        "year": "2017",
-        "event": "M.Sc. in Computational Physics, Khulna University"
-      },
-      {
-        "year": "2018",
-        "event": "Junior Data Analyst at Pathao Tech"
-      },
-      {
-        "year": "2021",
-        "event": "Senior ML Engineer at Intelligent Systems"
-      },
-      {
-        "year": "2023-Present",
-        "event": "Lead Data Scientist"
+        "year": "2020",
+        "event": "Joined Brain Station 23 / FinTech Global"
       }
     ],
     "achievements": [
       "Winner of National Data Science Hackathon 2020",
       "Keynote Speaker at PyCon Bangladesh",
       "Mentored 30+ Physics undergrads into Software/ML jobs"
-    ]
+    ],
+    "image": "https://i.ibb.co.com/67ZH0hgL/cgpa.png"
   },
   {
     "id": "ku-phy-004",

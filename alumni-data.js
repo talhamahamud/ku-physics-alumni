@@ -5,45 +5,6 @@
 
 const ALUMNI_DATA = [
   {
-    "id": "ku-phy-001",
-    "name": "Dr. Rahat Hossain",
-    "batch": "10th Batch (2007-08)",
-    "session": "2015-2016",
-    "title": "Postdoctoral Research Fellow in Quantum Optics",
-    "organization": "Max Planck Institute for the Science of Light",
-    "location": "Erlangen, Germany",
-    "categoryTag": "study-abroad",
-    "tags": [
-      "Alumni",
-      "study-abroad"
-    ],
-    "gender": "male",
-    "kuThesisTopic": "Applied Physics Research",
-    "email": "rahat.hossain@mpl.mpg.de",
-    "linkedin": "https://linkedin.com/in/example-rahat",
-    "scholar": "https://scholar.google.com/citations?user=example",
-    "facebook": "https://facebook.com/example-rahat",
-    "website": "https://mpl.mpg.de/rahat-hossain",
-    "researchGate": "https://researchgate.net/profile/Rahat_Hossain",
-    "availableForMentorship": true,
-    "careerPathway": [
-      {
-        "year": "2018",
-        "event": "B.Sc. in Physics, Khulna University"
-      },
-      {
-        "year": "2020",
-        "event": "Joined Max Planck Institute for the Science of Light"
-      }
-    ],
-    "achievements": [
-      "Published 12 High-Impact Papers in Physical Review Letters & Nature Photonics",
-      "DAAD Doctoral Fellowship Awardee",
-      "KU Gold Medalist 2011"
-    ],
-    "image": "https://i.ibb.co.com/67ZH0hgL/cgpa.png"
-  },
-  {
     "id": "ku-phy-002",
     "name": "Nusrat Jahan Tania",
     "batch": "14th Batch (2011-12)",
@@ -94,55 +55,6 @@ const ALUMNI_DATA = [
       "Winner of National Data Science Hackathon 2020",
       "Keynote Speaker at PyCon Bangladesh",
       "Mentored 30+ Physics undergrads into Software/ML jobs"
-    ]
-  },
-  {
-    "id": "ku-phy-003",
-    "name": "Sabbir Hossain",
-    "batch": "15th Batch (2012-13)",
-    "session": "2012-2013",
-    "title": "Ph.D. Candidate in Astrophysics & Cosmology",
-    "organization": "University of Texas at Austin",
-    "location": "Austin, Texas, USA",
-    "categoryTag": "study-abroad",
-    "tags": [
-      "Researcher",
-      "USA PhD",
-      "Astrophysics",
-      "Full Scholarship",
-      "GRE"
-    ],
-    "gender": "male",
-    "kuThesisTopic": "Gravitational Wave Signatures in Early Universe Inflation Models",
-    "email": "sabbir.astro@utexas.edu",
-    "linkedin": "https://linkedin.com/in/example-sabbir-astro",
-    "scholar": "https://scholar.google.com/citations?user=example-sabbir",
-    "facebook": "https://facebook.com/example-sabbir",
-    "website": null,
-    "researchGate": null,
-    "availableForMentorship": true,
-    "careerPathway": [
-      {
-        "year": "2016",
-        "event": "B.Sc. in Physics, Khulna University"
-      },
-      {
-        "year": "2018",
-        "event": "M.Sc. in Theoretical Physics, Khulna University"
-      },
-      {
-        "year": "2020",
-        "event": "Received Direct PhD Offer with Full TA/RA Assistantship"
-      },
-      {
-        "year": "2020-Present",
-        "event": "Graduate Research Assistant at UT Austin Observatory"
-      }
-    ],
-    "achievements": [
-      "Physics GRE Score 920/990 (94th percentile)",
-      "Co-author in Astrophysical Journal (ApJ)",
-      "Founder of KU Astronomy Circle"
     ]
   },
   {
@@ -240,93 +152,6 @@ const ALUMNI_DATA = [
       "Erasmus Mundus Scholar 2022",
       "Best B.Sc. Thesis Award in KU Science Faculty",
       "IELTS Score 8.5/9.0"
-    ]
-  },
-  {
-    "id": "ku-phy-006",
-    "name": "Dr. Sharmin Akter",
-    "batch": "09th Batch (2006-07)",
-    "session": "2006-2007",
-    "title": "Ph.D. Scholar & Research Scientist",
-    "organization": "Kyoto University",
-    "location": "Kyoto, Japan",
-    "categoryTag": "study-abroad",
-    "tags": [
-      "Researcher",
-      "Japan PhD",
-      "MEXT Scholar",
-      "Nanotechnology"
-    ],
-    "gender": "female",
-    "kuThesisTopic": "Synthesis and Optical Characterization of Zinc Oxide Nanoparticles",
-    "email": "sharmin.kyoto@kyoto-u.ac.jp",
-    "linkedin": "https://linkedin.com/in/example-sharmin-ku",
-    "scholar": "https://scholar.google.com/citations?user=example-sharmin",
-    "facebook": "https://facebook.com/example-sharmin",
-    "website": null,
-    "researchGate": "https://researchgate.net/profile/Sharmin_Akter",
-    "availableForMentorship": true,
-    "careerPathway": [
-      {
-        "year": "2010",
-        "event": "B.Sc. (Honours) in Physics, Khulna University"
-      },
-      {
-        "year": "2012",
-        "event": "M.Sc. in Physics, Khulna University"
-      },
-      {
-        "year": "2019",
-        "event": "Ph.D. Scholar, Kyoto University, Japan"
-      }
-    ],
-    "achievements": [
-      "Monbusho (MEXT) Japanese Govt Scholar",
-      "Published 18 Journal Articles"
-    ]
-  },
-  {
-    "id": "ku-phy-007",
-    "name": "Arik Rahman",
-    "batch": "16th Batch (2013-14)",
-    "session": "2013-2014",
-    "title": "Senior Machine Learning Engineer",
-    "organization": "TechGlobal AI Solutions",
-    "location": "Dhaka, Bangladesh",
-    "categoryTag": "tech",
-    "tags": [
-      "Tech, Data & AI",
-      "Machine Learning",
-      "NLP",
-      "Python",
-      "Computer Vision"
-    ],
-    "gender": "male",
-    "kuThesisTopic": "Neural Network Simulations of Non-linear Physical Systems",
-    "email": "arik.ml@techglobal.io",
-    "linkedin": "https://linkedin.com/in/example-arik-ml",
-    "scholar": null,
-    "facebook": "https://facebook.com/example-arik",
-    "website": null,
-    "researchGate": null,
-    "availableForMentorship": true,
-    "careerPathway": [
-      {
-        "year": "2017",
-        "event": "B.Sc. in Physics, Khulna University"
-      },
-      {
-        "year": "2019",
-        "event": "M.Sc. in Computational Physics, Khulna University"
-      },
-      {
-        "year": "2020",
-        "event": "ML Engineer at TechGlobal AI"
-      }
-    ],
-    "achievements": [
-      "Built NLP Engine serving 500k monthly requests",
-      "Open Source contributor to PyTorch ecosystem"
     ]
   }
 ];

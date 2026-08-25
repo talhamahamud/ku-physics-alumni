@@ -514,6 +514,12 @@ body {
   margin-top: 0.15rem;
 }
 
+.card-phone {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  margin-top: 0.15rem;
+}
+
 .category-tag-label {
   display: inline-block;
   font-size: 0.68rem;

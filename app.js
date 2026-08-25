@@ -34,7 +34,8 @@ document.addEventListener('DOMContentLoaded', () => {
     scholar: `<svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>`,
     facebook: `<svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg>`,
     website: `<svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>`,
-    researchGate: `<svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9 9h6v6H9z"></path></svg>`
+    researchGate: `<svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><path d="M9 9h6v6H9z"></path></svg>`,
+    phone: `<svg class="contact-icon-svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.39 2 2 0 0 1 3.6 1.21h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l.97-.97a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>`
   };
 
   // localStorage Keys (kept as fallback)
@@ -448,6 +449,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <p class="card-role">${alumni.title}</p>
                 <p class="card-org">${alumni.organization}</p>
                 <p class="card-location">${alumni.location}</p>
+                ${alumni.phone ? `<p class="card-phone"><a href="tel:${alumni.phone}" style="color: inherit; text-decoration: none;">📞 ${alumni.phone}</a></p>` : ''}
               </div>
             </div>
           </div>
@@ -672,6 +674,7 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('add-scholar').value = alumni.scholar || '';
     document.getElementById('add-facebook').value = alumni.facebook || '';
     document.getElementById('add-website').value = alumni.website || '';
+    document.getElementById('add-phone').value = alumni.phone || '';
     
     const imageInput = document.getElementById('add-image');
     if (imageInput) imageInput.value = alumni.image || '';
@@ -842,9 +845,17 @@ document.addEventListener('DOMContentLoaded', () => {
               <input type="url" class="form-input" id="add-website" placeholder="https://yourwebsite.com" />
             </div>
             <div class="form-group">
+              <label class="form-label">Phone Number</label>
+              <input type="tel" class="form-input" id="add-phone" placeholder="e.g. +880 1700 000000" />
+            </div>
+          </div>
+
+          <div class="form-row-2col">
+            <div class="form-group">
               <label class="form-label">Profile Image URL (e.g., ImgBB)</label>
               <input type="url" class="form-input" id="add-image" placeholder="https://i.ibb.co/..." />
             </div>
+            <div class="form-group"></div>
           </div>
 
           <div style="display: flex; gap: 1rem; margin-top: 1.5rem; flex-wrap: wrap;">
@@ -924,6 +935,7 @@ document.addEventListener('DOMContentLoaded', () => {
         categoryTag: document.getElementById('add-category').value,
         tags: ["Alumni", document.getElementById('add-category').value],
         email: document.getElementById('add-email').value || null,
+        phone: document.getElementById('add-phone').value.trim() || null,
         linkedin: document.getElementById('add-linkedin').value || null,
         scholar: document.getElementById('add-scholar').value || null,
         facebook: document.getElementById('add-facebook').value || null,
@@ -988,7 +1000,7 @@ document.addEventListener('DOMContentLoaded', () => {
       }
 
       // 1. Define columns for CSV
-      const headers = ["ID", "Name", "Batch", "Session", "Title", "Organization", "Location", "Category", "Email", "LinkedIn", "Google Scholar", "Facebook", "Website", "Image URL", "Thesis Topic"];
+      const headers = ["ID", "Name", "Batch", "Session", "Title", "Organization", "Location", "Category", "Email", "Phone", "LinkedIn", "Google Scholar", "Facebook", "Website", "Image URL", "Thesis Topic"];
       
       // 2. Build rows
       const rows = ALUMNI_DATA.map(alumni => {
@@ -1002,6 +1014,7 @@ document.addEventListener('DOMContentLoaded', () => {
           alumni.location,
           alumni.categoryTag,
           alumni.email || "",
+          alumni.phone || "",
           alumni.linkedin || "",
           alumni.scholar || "",
           alumni.facebook || "",

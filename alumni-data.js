@@ -41,7 +41,8 @@ const ALUMNI_DATA = [
       "Keynote Speaker at PyCon Bangladesh",
       "Mentored 30+ Physics undergrads into Software/ML jobs"
     ],
-    "image": "https://i.ibb.co.com/67ZH0hgL/cgpa.png"
+    "image": "https://i.ibb.co.com/67ZH0hgL/cgpa.png",
+    "phone": "+8801913337269"
   },
   {
     "id": "ku-phy-004",
